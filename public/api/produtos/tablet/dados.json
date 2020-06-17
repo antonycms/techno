@@ -7,11 +7,13 @@
   "img": "./api/produtos/tablet/tablet-foto.jpg",
   "reviews": [
     {
+      "id": 1,
       "nome": "Rogério",
       "estrelas": 5,
       "descricao": "Gostei muito do produto, atendeu todas as minhas necessidades."
     },
     {
+      "id": 2,
       "nome": "Nathália",
       "estrelas": 4,
       "descricao": "Gostei, mas o preço poderia ser melhor."
