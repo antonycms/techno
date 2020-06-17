@@ -1,5 +1,7 @@
 <template>
-  <Home />
+  <div>
+    <Home />
+  </div>
 </template>
 
 <script>
@@ -20,11 +22,14 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+  font-family: 'Noto Serif', serif;
 }
 html,
-body,
-#app {
+body {
   width: 100%;
-  height: 100%;
+}
+
+body {
+  background: linear-gradient(to right, #1a1a1a 30%, #fff 30%);
 }
 </style>
