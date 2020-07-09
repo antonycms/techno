@@ -19,6 +19,7 @@
 <script>
 import ModalProduto from '../components/ModalProduto';
 import Header from '../components/Header';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -32,9 +33,7 @@ export default {
   }),
 
   computed: {
-    carrinho() {
-      return this.$store.state.carrinho;
-    },
+    ...mapState(['CARRINHO']),
   },
 
   methods: {
@@ -48,7 +47,7 @@ export default {
       const response = await fetch(`./api/produtos/${id}/dados.json`);
       const produtoL = await response.json();
 
-      this.carrinho.forEach(produto => {
+      this.CARRINHO.forEach(produto => {
         if (produto.id === produtoL.id) {
           --produtoL.estoque;
         }

@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   props: {
     produto: {
@@ -42,12 +44,12 @@ export default {
   },
 
   computed: {
-    carrinho() {
-      return this.$store.state.carrinho;
-    },
+    ...mapState(['CARRINHO']),
   },
 
   methods: {
+    ...mapActions(['changeCarrinho']),
+
     emitCloseEvent({ target, currentTarget }) {
       if (target && target !== currentTarget) return;
 
@@ -57,7 +59,7 @@ export default {
     addProdutoCarrinho(produto) {
       if (!this.produto.estoque) return;
 
-      this.$store.commit('setCarrinho', [...this.carrinho, produto]);
+      this.changeCarrinho([...this.CARRINHO, produto]);
       --this.produto.estoque;
     },
   },
