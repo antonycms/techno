@@ -10,7 +10,12 @@
         <span class="modal_preco"><Format :money="produto.preco"/></span>
         <h2 class="modal_titulo">{{ produto.nome }}</h2>
         <p>{{ produto.descricao }}</p>
-        <button class="modal_btn">Adicionar Item</button>
+        <button
+          @click="() => addProdutoCarrinho(produto)"
+          :class="!produto.estoque ? 'modal_btn disabled' : 'modal_btn'"
+        >
+          Adicionar Item
+        </button>
 
         <div class="avaliacoes">
           <h2 class="avaliacoes_subtitulo">Avaliações</h2>
@@ -36,11 +41,24 @@ export default {
     },
   },
 
+  computed: {
+    carrinho() {
+      return this.$store.state.carrinho;
+    },
+  },
+
   methods: {
     emitCloseEvent({ target, currentTarget }) {
       if (target && target !== currentTarget) return;
 
       this.$emit('close-modal');
+    },
+
+    addProdutoCarrinho(produto) {
+      if (!this.produto.estoque) return;
+
+      this.$store.commit('setCarrinho', [...this.carrinho, produto]);
+      --this.produto.estoque;
     },
   },
 };
@@ -51,11 +69,13 @@ export default {
   position: absolute;
   top: -10px;
   right: -10px;
-  border-radius: 100%;
-  background-color: white;
-  width: 45px;
-  height: 45px;
-  border: 2px solid black;
+  color: white;
+  border-radius: 10%;
+  font-weight: bold;
+  background-color: black;
+  width: 35px;
+  height: 35px;
+  border: 0;
   outline: transparent;
   cursor: pointer;
 }
@@ -127,6 +147,11 @@ export default {
   background-color: #2c2c2c;
   transition: 0.2s;
   outline: transparent;
+}
+
+.modal_btn.disabled {
+  background-color: #2c2c2c;
+  cursor: not-allowed;
 }
 
 .avaliacoes_subtitulo {

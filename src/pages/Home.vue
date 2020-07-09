@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Header />
+
     <ModalProduto v-show="produto.id" :produto="produto" @close-modal="closeModal" />
 
     <section class="produtos">
@@ -16,10 +18,12 @@
 
 <script>
 import ModalProduto from '../components/ModalProduto';
+import Header from '../components/Header';
 
 export default {
   components: {
     ModalProduto,
+    Header,
   },
 
   data: () => ({
@@ -27,17 +31,30 @@ export default {
     produto: {},
   }),
 
+  computed: {
+    carrinho() {
+      return this.$store.state.carrinho;
+    },
+  },
+
   methods: {
-    loadProducts() {
-      fetch('./api/produtos.json')
-        .then(response => response.json())
-        .then(response => (this.produtos = response));
+    async loadProducts() {
+      const response = await fetch('./api/produtos.json');
+
+      this.produtos = await response.json();
     },
 
-    loadProduct(id) {
-      fetch(`./api/produtos/${id}/dados.json`)
-        .then(response => response.json())
-        .then(response => (this.produto = response));
+    async loadProduct(id) {
+      const response = await fetch(`./api/produtos/${id}/dados.json`);
+      const produtoL = await response.json();
+
+      this.carrinho.forEach(produto => {
+        if (produto.id === produtoL.id) {
+          --produtoL.estoque;
+        }
+      });
+
+      this.produto = produtoL;
     },
 
     closeModal() {

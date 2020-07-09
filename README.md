@@ -1,5 +1,5 @@
 <h1 align="center">Techno👋</h1>
-<p>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.14.4-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D12.17.0-blue.svg" />
@@ -27,6 +27,7 @@
 
 ## Tecnologias
 - Vue
+- Vuex
 - Node
 
 ## Lints
@@ -69,7 +70,7 @@ Deixe uma ⭐️ se esse projeto ajudou você!
 ## 📝 Licença
 
 Copyright © 2020 [Antony Santos](https://github.com/antonycms).<br />
-Este projeto possui licença [MIT](https://github.com/antonycms/next-level-week-01/blob/master/LICENSE).
+Este projeto possui licença [MIT](https://github.com/antonycms/techno/blob/master/LICENSE).
 
 ***
 _Este README foi gerado utilizando [readme-md-generator](https://github.com/kefranabg/readme-md-generator) ❤️_
