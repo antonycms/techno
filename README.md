@@ -34,6 +34,8 @@
 - Prettier
 - Eslint
 - Editorconfig
+- commitlint
+- commitizen
 
 #
 ## Instalação

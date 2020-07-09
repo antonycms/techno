@@ -23,17 +23,17 @@ export default {
   },
 
   computed: {
-    ...mapState(['CARRINHO']),
+    ...mapState(['carrinho']),
 
     valorTotal() {
       let total = 0;
-      this.CARRINHO.forEach(produto => (total += produto.preco));
+      this.carrinho.forEach(produto => (total += produto.preco));
 
       return total;
     },
 
     quantidade() {
-      return this.CARRINHO.length;
+      return this.carrinho.length;
     },
   },
 };

@@ -33,7 +33,7 @@ export default {
   }),
 
   computed: {
-    ...mapState(['CARRINHO']),
+    ...mapState(['carrinho']),
   },
 
   methods: {
@@ -47,7 +47,7 @@ export default {
       const response = await fetch(`./api/produtos/${id}/dados.json`);
       const produtoL = await response.json();
 
-      this.CARRINHO.forEach(produto => {
+      this.carrinho.forEach(produto => {
         if (produto.id === produtoL.id) {
           --produtoL.estoque;
         }

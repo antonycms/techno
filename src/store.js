@@ -5,18 +5,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    CARRINHO: window.localStorage.CARRINHO ? JSON.parse(window.localStorage.CARRINHO) : [],
+    carrinho: window.localStorage.CARRINHO ? JSON.parse(window.localStorage.CARRINHO) : [],
   },
 
   mutations: {
-    setCarrinho(state, payload) {
-      state.CARRINHO = payload;
+    SET_CARRINHO(state, payload) {
+      state.carrinho = payload;
     },
   },
 
   actions: {
     changeCarrinho(context, payload) {
-      context.commit('setCarrinho', payload);
+      context.commit('SET_CARRINHO', payload);
 
       window.localStorage.CARRINHO = JSON.stringify(payload);
     },

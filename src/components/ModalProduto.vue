@@ -44,7 +44,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['CARRINHO']),
+    ...mapState(['carrinho']),
   },
 
   methods: {
@@ -59,7 +59,7 @@ export default {
     addProdutoCarrinho(produto) {
       if (!this.produto.estoque) return;
 
-      this.changeCarrinho([...this.CARRINHO, produto]);
+      this.changeCarrinho([...this.carrinho, produto]);
       --this.produto.estoque;
     },
   },
