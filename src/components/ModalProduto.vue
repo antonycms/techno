@@ -1,5 +1,9 @@
 <template>
   <div @click="emitCloseEvent" v-if="produto.id" class="modal">
+    <div :class="alertaAddItemAtivo ? 'alerta_item_adicionado ativo' : 'alerta_item_adicionado'">
+      <p>{{ produto.nome }} adicionado(a) ao carrinho!</p>
+    </div>
+
     <div class="modal_container">
       <div class="modal_img">
         <img :src="produto.img" :alt="produto.nome" />
@@ -43,8 +47,24 @@ export default {
     },
   },
 
+  data: () => ({
+    alertaAddItemAtivo: false,
+  }),
+
   computed: {
     ...mapState(['carrinho']),
+  },
+
+  watch: {
+    carrinho() {
+      if (this.alertaAddItemAtivo) return;
+
+      this.alertaAddItemAtivo = true;
+
+      setTimeout(() => {
+        this.alertaAddItemAtivo = false;
+      }, 1500);
+    },
   },
 
   methods: {
@@ -188,5 +208,35 @@ export default {
 .avaliacao_usuario {
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.alerta_item_adicionado {
+  display: none;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 0.5px 1px 3px black;
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  padding: 12px 15px;
+  max-width: 950px;
+}
+
+.alerta_item_adicionado.ativo {
+  display: block;
+  animation: fadeInDown 0.3s forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0px, 0);
+  }
 }
 </style>

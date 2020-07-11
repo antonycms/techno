@@ -36,6 +36,16 @@ export default {
     ...mapState(['carrinho']),
   },
 
+  watch: {
+    produto() {
+      window.location.hash = '';
+
+      if (this.produto.id) {
+        window.location.hash = this.produto.id;
+      }
+    },
+  },
+
   methods: {
     async loadProducts() {
       const response = await fetch('./api/produtos.json');
@@ -59,10 +69,19 @@ export default {
     closeModal() {
       this.produto = {};
     },
+
+    router() {
+      const { hash } = document.location;
+
+      if (!hash) return;
+
+      this.loadProduct(`${hash}`.replace('#', ''));
+    },
   },
 
   created() {
     this.loadProducts();
+    this.router();
   },
 };
 </script>
