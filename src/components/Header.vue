@@ -97,4 +97,10 @@ export default {
   margin-left: 10px;
   width: 18px;
 }
+
+@media (max-width: 960px) {
+  .container {
+    margin: 0 50px;
+  }
+}
 </style>

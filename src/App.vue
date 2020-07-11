@@ -34,4 +34,10 @@ body {
 body {
   background: linear-gradient(to right, #1a1a1a 30%, #fff 30%);
 }
+
+@media (max-width: 760px) {
+  body {
+    background: linear-gradient(to right, #1a1a1a 50%, #fff 50%);
+  }
+}
 </style>

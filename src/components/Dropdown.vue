@@ -1,5 +1,6 @@
 <template>
   <div class="dropdown-container" v-show="isActive">
+    <p style="margin-bottom: 20px;">Carrinho</p>
     <ul v-show="carrinho.length">
       <li class="dropdown-item" v-for="(produto, index) in carrinho" :key="index">
         <div style="display: flex">
@@ -10,7 +11,7 @@
       </li>
     </ul>
 
-    <p v-show="!carrinho.length">Nenhum item adicionado ao carrinho!</p>
+    <p style="margin-bottom: 10px" v-show="!carrinho.length">Nenhum item adicionado ao carrinho!</p>
   </div>
 </template>
 
@@ -110,6 +111,12 @@ export default {
   to {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
+  }
+}
+
+@media (max-width: 980px) {
+  .dropdown-container {
+    left: -55px;
   }
 }
 </style>

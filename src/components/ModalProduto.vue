@@ -13,7 +13,7 @@
         <button @click="emitCloseEvent" class="btn_close">X</button>
         <span class="modal_preco"><Format :money="produto.preco"/></span>
         <h2 class="modal_titulo">{{ produto.nome }}</h2>
-        <p>{{ produto.descricao }}</p>
+        <p class="descricao">{{ produto.descricao }}</p>
         <button
           @click="() => addProdutoCarrinho(produto)"
           :class="!produto.estoque ? 'modal_btn disabled' : 'modal_btn'"
@@ -237,6 +237,83 @@ export default {
   to {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
+  }
+}
+
+@media (max-width: 780px) {
+  .modal {
+    padding: 80px 20px;
+  }
+
+  .modal_titulo {
+    font-size: 2rem;
+  }
+
+  .modal_dados .descricao {
+    font-size: 14px;
+  }
+
+  .avaliacoes_subtitulo {
+    font-size: 1rem;
+  }
+
+  .avaliacao_descricao {
+    font-size: 12px;
+  }
+
+  .avaliacao_usuario {
+    font-size: 12px;
+  }
+
+  .modal_btn {
+    margin-top: 8%;
+    margin-bottom: 4%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    padding: 20px;
+  }
+  .modal_container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+
+    padding: 0;
+  }
+
+  .modal_img img {
+    width: 100%;
+    max-height: 250px;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal_titulo {
+    font-size: 1.4rem;
+  }
+
+  .modal_dados .descricao {
+    font-size: 12px;
+  }
+
+  .avaliacoes_subtitulo {
+    font-size: 0.8rem;
+  }
+
+  .avaliacao_descricao {
+    font-size: 12px;
+  }
+
+  .avaliacao_usuario {
+    font-size: 10px;
+  }
+
+  .modal_btn {
+    margin-top: 8%;
+    margin-bottom: 2%;
+    padding: 5px 12px;
   }
 }
 </style>

@@ -90,6 +90,8 @@ export default {
 .produtos {
   max-width: 900px;
   margin: 100px auto 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .produto {
@@ -113,5 +115,43 @@ export default {
 
 .produto-preco {
   color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 960px) {
+  .produtos {
+    max-width: 650px;
+  }
+
+  .produto-titulo {
+    font-size: 2rem;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 760px) {
+  .produto {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 2px;
+  }
+
+  .produto-img {
+    margin-right: 0;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .produto-info {
+    text-align: center;
+  }
+
+  .produto-titulo {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
 }
 </style>
