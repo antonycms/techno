@@ -4,18 +4,30 @@
       <img src="assets/techno.svg" alt="techno" />
     </a>
 
-    <button class="container-carrinho">
-      <span class="valor">{{ valorTotal | formatToBRL }}</span>
-      <div class="divisor" />
-      <span class="quantidade">{{ quantidade }}</span>
-      <img src="assets/carrinho.svg" alt="carrinho" />
+    <button @click="event => openCarrinhoDropdown(event)" class="in-btn container-carrinho">
+      <span class="in-btn valor">{{ valorTotal | formatToBRL }}</span>
+      <div class="in-btn divisor" />
+      <span class="in-btn quantidade">{{ quantidade }}</span>
+      <img class="in-btn" src="assets/carrinho.svg" alt="carrinho" />
+
+      <Dropdown :isActive="dropdownActive" />
     </button>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Dropdown from '@/components/Dropdown.vue';
+
 export default {
+  components: {
+    Dropdown,
+  },
+
+  data: () => ({
+    dropdownActive: false,
+  }),
+
   filters: {
     formatToBRL(value = 0) {
       return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -34,6 +46,13 @@ export default {
 
     quantidade() {
       return this.carrinho.length;
+    },
+  },
+  methods: {
+    openCarrinhoDropdown({ target }) {
+      if (target.classList[0] !== 'in-btn') return;
+
+      this.dropdownActive = !this.dropdownActive;
     },
   },
 };
@@ -67,6 +86,7 @@ export default {
   background-color: white;
   border: 0;
   font-size: 15px;
+  position: relative;
 }
 
 .container-carrinho:focus {
